@@ -1,0 +1,66 @@
+<h1 mat-dialog-title>{{'modals.createTodo.labels.modalTitle' | translate}}</h1>
+
+<div mat-dialog-content>
+    <form [formGroup]="formGroupTasks" *ngIf="formGroupTasks" class="vertical-form">
+        <mat-form-field>
+            <mat-label>{{'modals.createTodo.labels.todoTitle' | translate}}</mat-label>
+            <input matInput placeholder="Drink water" formControlName="title">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'modals.createTodo.labels.expiringDate' | translate}}</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="deadline">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>{{'modals.createTodo.labels.addRelatedUsers' | translate}}</mat-label>
+            <mat-select formControlName="associatedUsers" multiple>
+                <mat-option *ngFor="let option of users$ | async" [value]="option">{{ option.fullName }}, {{option.age}} </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-accordion>
+            <mat-expansion-panel [expanded]="newUserExpanded" (opened)="newUserExpanded = true" (closed)="newUserForm = createForm(true); newUserExpanded = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{'modals.createTodo.labels.createUser' | translate}}
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <form [formGroup]="newUserForm" *ngIf="newUserForm" class="vertical-form">
+                    <mat-form-field>
+                        <mat-label>{{'modals.createTodo.labels.fullName' | translate}}</mat-label>
+                        <input matInput placeholder="Jhon Jhon" formControlName="fullName">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>{{'modals.createTodo.labels.age' | translate}}</mat-label>
+                        <input matInput placeholder="23" formControlName="age">
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>{{'modals.createTodo.labels.addSkills' | translate}}</mat-label>
+                        <mat-chip-grid #chipGrid formControlName="skills">
+                          <mat-chip-row *ngFor="let skill of skills.value; let i = index;"
+                                        (removed)="removeSkill(i)"
+                                        [removable]="true">
+                            {{skill}}
+                            <button matChipRemove>
+                              <mat-icon>cancel</mat-icon>
+                            </button>
+                          </mat-chip-row>
+                          <input placeholder="{{'modals.createTodo.labels.typeAndEnter' | translate}}"
+                                formControlName="skillsInput"
+                                [matChipInputFor]="chipGrid"
+                                [matChipInputSeparatorKeyCodes]="[13, 188]"
+                                (matChipInputTokenEnd)="addSkill($event)"/>
+                        </mat-chip-grid>
+                      </mat-form-field>
+                      <button [disabled]="!newUserForm.valid" mat-button (click)="createUser()">{{'commons.labels.add' | translate}}</button>
+                </form>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </form>
+</div>
+
+<div mat-dialog-actions>
+    <button mat-button mat-dialog-close>{{'commons.labels.no' | translate}}</button>
+    <button mat-button mat-dialog-close cdkFocusInitial [disabled]="!formGroupTasks?.valid" (click)="saveTask()">{{'commons.labels.save' | translate}}</button>
+</div>

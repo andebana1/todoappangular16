@@ -1,0 +1,74 @@
+<div class="pb-3" style="width: 100%;">
+    <button mat-raised-button [matMenuTriggerFor]="menufilters">
+        {{'pages.todos.filters.label' | translate}}
+        <mat-icon fontIcon="filter_list"></mat-icon>
+    </button>
+    <mat-menu #menufilters="matMenu">
+        <button mat-menu-item (click)="filterTodosByStatus()">
+            <span>{{ 'pages.todos.filters.options.all' | translate }}</span>
+        </button>
+        <button mat-menu-item (click)="filterTodosByStatus(false)">
+            <mat-icon fontIcon="pending"></mat-icon>
+            <span>{{ 'pages.todos.filters.options.pending' | translate }}</span>
+        </button>
+        <button mat-menu-item (click)="filterTodosByStatus(true)">
+            <mat-icon fontIcon="done"></mat-icon>
+            <span>{{ 'pages.todos.filters.options.completed' | translate }}</span>
+        </button>
+    </mat-menu>
+    <button mat-raised-button (click)="openTaskCreationDialog()" style="margin-left: 1rem;">{{ 'pages.todos.labels.createToDo' | translate }}</button>
+</div>
+
+<div class="d-flex justify-content-center" *ngIf="isLoading$ | async">
+    <mat-spinner></mat-spinner>
+</div>
+
+<div class="row pb-3" *ngFor="let item of todos$ | async">
+    <mat-card>
+        <mat-card-header>
+            <span class="title-first-part"> # {{item.id}} </span>
+            <span> - </span>
+            <span class="title-second-part"> {{ item.title }} </span>
+            <span class="spacer"></span>
+            <button mat-button *ngIf="item.completed" (click)="filterTodosByStatus(true)">
+                <mat-icon fontIcon="done"></mat-icon>
+                {{ 'pages.todos.filters.options.completed' | translate }}
+            </button>
+            <button mat-raised-button color="primary" *ngIf="!item.completed" (click)="completeTodo(item)">
+                {{'pages.todos.labels.completeTodo' | translate}}
+            </button>
+            <button mat-button *ngIf="!item.completed" color="primary" (click)="filterTodosByStatus(false)">
+                <mat-icon fontIcon="pending"></mat-icon>
+                {{ 'pages.todos.filters.options.pending' | translate }}
+            </button>
+            <button mat-button (click)="deleteTodo(item.id)">
+                <mat-icon fontIcon="delete"></mat-icon>
+            </button>
+        </mat-card-header>
+        <mat-card-content>
+            <h4>{{ 'pages.todos.labels.associatedUsers' | translate }}</h4>
+            <mat-chip-listbox aria-label="Fish selection">
+                <div *ngFor="let user of item.users">
+                    <mat-chip [matMenuTriggerFor]="menu">
+                        <mat-icon matChipAvatar fontIcon="more_vert"></mat-icon>
+                        {{user.fullName}}, {{user.age}}
+                    </mat-chip>
+                    <mat-menu #menu="matMenu">
+                        <button *ngFor="let skill of user.skills; let i = index;" mat-menu-item>
+                            {{skill}}
+                            <mat-icon fontIcon="delete" (click)="removeSkill(i, user)"></mat-icon>
+                        </button>
+                        <button mat-menu-item [matMenuTriggerFor]="newSkill">{{'pages.todos.labels.addSkill' | translate}}</button>
+                        <mat-menu #newSkill="matMenu">
+                            <form (click)="$event.stopPropagation()">
+                                <input matInput #nameInput>
+                                <button mat-button (click)="addSkill(nameInput, user)">{{'commons.labels.add' | translate}}</button>
+                            </form>
+                        </mat-menu>
+                        <button mat-button color="warn" (click)="removeUser(item, user)">Remove from Todo</button>
+                    </mat-menu>
+                </div>
+            </mat-chip-listbox>
+        </mat-card-content>
+    </mat-card>
+</div>

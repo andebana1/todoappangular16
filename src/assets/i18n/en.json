@@ -1,0 +1,53 @@
+{
+    "commons": {
+        "labels": {
+            "add": "Add",
+            "no": "No",
+            "yes": "Yes", 
+            "save": "Save"
+        },
+        "languages": {
+            "en": "English",
+            "es": "Spanish",
+            "pt": "Portuguese"
+        }
+    },
+    "sideMenu": {
+        "home": "Home",
+        "todos": "To Dos"
+    },
+    "pages": {
+        "todos": {
+            "title": "To Dos",
+            "filters": {
+                "label": "Filters",
+                "options": {
+                    "all": "All",
+                    "completed": "Completed",
+                    "pending": "Pending"
+                }
+            },
+            "labels": {
+                "createToDo": "Create To Do",
+                "associatedUsers": "Associated Users",
+                "addSkill": "Add skill",
+                "completeTodo": "Complete todo"
+            }
+        }
+    },
+    "modals": {
+        "createTodo": {
+            "labels": {
+                "modalTitle": "Create a Todo",
+                "todoTitle": "Todo Title",
+                "expiringDate": "Choose a expiration date",
+                "addRelatedUsers": "Add related users",
+                "createUser": "Create a user",
+                "fullName": "Full Name",
+                "age": "Age",
+                "addSkills": "Add skills",
+                "typeAndEnter": "Type + Enter"
+            }
+        }
+    }
+}

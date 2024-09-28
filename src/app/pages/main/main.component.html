@@ -1,0 +1,37 @@
+<div class="container" [class.is-mobile]="mobileQuery?.matches">
+
+  <mat-toolbar>
+      <button mat-icon-button class="example-icon" (click)="snav.toggle()">
+          <mat-icon>menu</mat-icon>
+      </button>
+      <span>My App</span>
+      <span class="spacer"></span>
+      <button mat-icon-button [matMenuTriggerFor]="translationsMenu" class="example-icon favorite-icon">
+        <mat-icon fontIcon="translate"></mat-icon>
+      </button>
+      <mat-menu #translationsMenu="matMenu">
+        <button mat-menu-item (click)="changeLang('en')">{{'commons.languages.en' | translate}}</button>
+        <button mat-menu-item (click)="changeLang('es')">{{'commons.languages.es' | translate}}</button>
+        <button mat-menu-item (click)="changeLang('pt')">{{'commons.languages.pt' | translate}}</button>
+      </mat-menu>
+  </mat-toolbar>
+  
+  <mat-sidenav-container autosize class="app-sidenav-container" [style.marginTop.px]="mobileQuery?.matches ? 56 : 0">
+      <mat-sidenav [opened]="true" [mode]="mobileQuery?.matches ? 'over' : 'side'" #snav [fixedInViewport]="mobileQuery?.matches" fixedTopGap="56">
+        <mat-nav-list>
+          <mat-list-item>
+            <button mat-button><mat-icon>house</mat-icon> {{'sideMenu.home' | translate}} </button>
+          </mat-list-item>
+          <mat-list-item>
+              <button mat-button><mat-icon>fact_check</mat-icon> {{'sideMenu.todos' | translate}} </button>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-sidenav>
+      <mat-sidenav-container>
+        <div class="p-4">
+          <h1>{{'pages.todos.title' | translate}}</h1>
+          <router-outlet />
+        </div>
+      </mat-sidenav-container>
+  </mat-sidenav-container>
+</div>

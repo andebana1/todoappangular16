@@ -1,0 +1,53 @@
+{
+    "commons": {
+        "labels": {
+            "add": "Adicionar",
+            "no": "Não",
+            "yes": "Sim", 
+            "save": "Salvar"
+        },
+        "languages": {
+            "en": "Inglês",
+            "es": "Espanhol",
+            "pt": "Portugês"
+        }
+    },
+    "sideMenu": {
+        "home": "Home",
+        "todos": "Tarefas"
+    },
+    "pages": {
+        "todos": {
+            "title": "Tarefas",
+            "filters": {
+                "label": "Filtros",
+                "options": {
+                    "all": "Todos",
+                    "completed": "Completados",
+                    "pending": "Pendentes"
+                }
+            },
+            "labels": {
+                "createToDo": "Criar uma tarefa",
+                "associatedUsers": "Usuários associados",
+                "addSkill": "Adicionar habilidade",
+                "completeTodo": "Completar tarefa"
+            }
+        }
+    },
+    "modals": {
+        "createTodo": {
+            "labels": {
+                "modalTitle": "Criar uma tarefas",
+                "todoTitle": "Título da tarefa",
+                "expiringDate": "Data de expiração",
+                "addRelatedUsers": "Adicionar usuários relacionados",
+                "createUser": "Criar usuário",
+                "fullName": "Nome completo",
+                "age": "Idade",
+                "addSkills": "Adicionar habilidades",
+                "typeAndEnter": "Digitar + Enter"
+            }
+        }
+    }
+}

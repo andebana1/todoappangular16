@@ -1,0 +1,53 @@
+{
+    "commons": {
+        "labels": {
+            "add": "Agregar",
+            "no": "No",
+            "yes": "Sí", 
+            "save": "Guardar"
+        },
+        "languages": {
+            "en": "Inglés",
+            "es": "Español",
+            "pt": "Portugués"
+        }
+    },
+    "sideMenu": {
+        "home": "Principal",
+        "todos": "Tareas"
+    },
+    "pages": {
+        "todos": {
+            "title": "Tareas",
+            "filters": {
+                "label": "Filtros",
+                "options": {
+                    "all": "Todos",
+                    "completed": "Completada",
+                    "pending": "Pendiente"
+                }
+            },
+            "labels": {
+                "createToDo": "Crear Tarea",
+                "associatedUsers": "Usuarios asociados",
+                "addSkill": "Agregar habilidade",
+                "completeTodo": "Completar tarea"
+            }
+        }
+    },
+    "modals": {
+        "createTodo": {
+            "labels": {
+                "modalTitle": "Crear una Tarea",
+                "todoTitle": "Título de la tarea",
+                "expiringDate": "Fecha de vencimiento",
+                "addRelatedUsers": "Agregar usuario asociado",
+                "createUser": "Crear un usuario",
+                "fullName": "Nombre completo",
+                "age": "Edad",
+                "addSkills": "Agregar habilidades",
+                "typeAndEnter": "Digitar + Enter"
+            }
+        }
+    }
+}
